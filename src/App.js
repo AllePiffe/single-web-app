@@ -1,25 +1,30 @@
-import logo from './logo.svg';
+
 import './App.css';
+import React from 'react';
+import Home from './Home';
+import About from './About';
+import Nav from './Nav';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor() {
+    super()
+    this.state = { page: { label: "Home", hash: "home" } }
+    window.location.href = "#/" + this.state.page.hash
+  }
+
+
+
+  render() {
+    return (
+      <div className='app'>
+        <Nav state={this.state} />
+        {this.state.page.label === "Home" && <Home />}
+        {this.state.page.label === "About" && <About />}
+      </div>
+
+    );
+  }
+
+
 }
-
 export default App;
