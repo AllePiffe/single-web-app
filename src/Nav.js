@@ -1,23 +1,23 @@
 import React from "react";
 
-function Nav(attributi) {
-    const henderClik = (event) => {
-        event.preventDefault()
-        attributi.calback(event.target.text);
+function Navbar(attr) {
 
+    const handlerClick = (event) => {
+        attr.clickCallback(event.target.innerText);
+        event.preventDefault()
     }
+
 
     return (
         <ul className="navbar navbar-expand navbar-dark bg-dark">
-            <li className="nav-item">
-                <a className={`nav-link text-white ${attributi.state.page.hash === 'home' ? 'active' : ''}`} href="#/Home" onclik={henderClik}>Home</a>
-            </li>
-            <li className="nav-item">
-                <a className={`nav-link text-white ${attributi.state.page.hash === 'about' ? 'active' : ''}`} href="#/About" onclik={henderClik}>About</a>
-            </li>
+            {attr.label.map((obj) => (
+                <li key={obj.name} className="nav-item">
+                    <a onClick={handlerClick}
+                        className={`text-white nav-link ${attr.state.page.hash === obj.name ? 'active' : ''}`}
+                        href={`#/${obj.name}`}>{obj.name}</a>
+                </li>
+            ))}
         </ul>
     )
-
 }
-
-export default Nav;
+export default Navbar;
